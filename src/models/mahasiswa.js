@@ -6,4 +6,13 @@ const getAllMahasiswaData = () => {
     return dbPoll.execute(SQLQuery);
 };
 
-module.exports = {getAllMahasiswaData}
+const addMahasiswaData = (body) => {
+    const {nim, nama, no_telfon, alamat} = body;
+
+    const SQLQuery = `INSERT INTO mahasiswa (nim, nama, no_telfon, alamat)
+                        VALUES('${nim}', '${nama}', '${no_telfon}', '${alamat}')`
+        
+                        return dbPoll.execute(SQLQuery);
+}
+
+module.exports = {getAllMahasiswaData, addMahasiswaData}

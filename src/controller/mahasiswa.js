@@ -1,4 +1,4 @@
-const {getAllMahasiswaData} = require('../models/mahasiswa')
+const {getAllMahasiswaData, addMahasiswaData} = require('../models/mahasiswa')
 
 const getAllMahasiswa = async (req,res) => {
     try{
@@ -18,4 +18,23 @@ const getAllMahasiswa = async (req,res) => {
     }
 }
 
-module.exports = {getAllMahasiswa}
+const createDataMahasiswa = async (req,res) =>{
+    const {body} = req;
+    try{
+        await addMahasiswaData(body)
+
+        res.json({
+            statusCode:200,
+            massage:'Berhasil Mengirim Data',
+            result: body,
+        })
+    }catch (error){
+        res.send({
+            statusCode: 500,
+            massage: 'Gagal ngirim data',
+            error,
+        })
+    }
+}
+
+module.exports = {getAllMahasiswa, createDataMahasiswa}
