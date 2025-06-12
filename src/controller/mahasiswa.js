@@ -1,4 +1,4 @@
-const {getAllMahasiswaData, addMahasiswaData} = require('../models/mahasiswa')
+const {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa} = require('../models/mahasiswa')
 
 const getAllMahasiswa = async (req,res) => {
     try{
@@ -28,13 +28,31 @@ const createDataMahasiswa = async (req,res) =>{
             massage:'Berhasil Mengirim Data',
             result: body,
         })
+        // catch itu buat nanganin masalah error setelah try berjalan jika di try ada masalah jadi tetep bisa jalan dan nunjukin pesan error nya apa 
     }catch (error){
         res.send({
             statusCode: 500,
             massage: 'Gagal ngirim data',
             error,
-        })
+        })  
     }
 }
 
-module.exports = {getAllMahasiswa, createDataMahasiswa}
+
+const deleteDataMahasiswa = async (req,res) =>{
+    const idmahasiswa = req.params.id
+    console.log(idmahasiswa)
+    try{
+        await modeldeleteDataMahasiswa(idmahasiswa);
+        res.status(200).send({
+            message: 'Data berhasil di hapus'
+        })
+    }catch (error){
+        res.status(500).send({
+            message:'Data gagal di hapus',
+            error,
+        })
+    }
+} 
+
+module.exports = {getAllMahasiswa, createDataMahasiswa, deleteDataMahasiswa}

@@ -15,4 +15,11 @@ const addMahasiswaData = (body) => {
                         return dbPoll.execute(SQLQuery);
 }
 
-module.exports = {getAllMahasiswaData, addMahasiswaData}
+const modeldeleteDataMahasiswa = (idmahasiswa) => {
+    const SQLQuery = `DELETE FROM mahasiswa WHERE id = ${idmahasiswa}` 
+            return dbPoll.execute(SQLQuery)
+            
+
+}
+
+module.exports = {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa}
