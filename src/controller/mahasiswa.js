@@ -1,4 +1,4 @@
-const {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa} = require('../models/mahasiswa')
+const {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa, updateDataMahasiswaa} = require('../models/mahasiswa')
 
 const getAllMahasiswa = async (req,res) => {
     try{
@@ -55,4 +55,26 @@ const deleteDataMahasiswa = async (req,res) =>{
     }
 } 
 
-module.exports = {getAllMahasiswa, createDataMahasiswa, deleteDataMahasiswa}
+
+const updateDataMahasiswa = async (req,res) =>{
+    
+    try{
+        const id = req.params.id
+        await updateDataMahasiswaa(req.body, req.params.id)
+        res.status(200).send({
+            statuscode: 200,
+            message: 'success',
+            result: {
+                id,  // Mengambil id dari URL parameter
+                ...req.body  // Mengambil semua data dari req.body dan menambahkannya ke objek baru
+            }
+        })
+    }catch (error){
+        res.status(500).send ({
+            massage: 'Gagal update data',
+            error
+        })
+    }
+}
+
+module.exports = {getAllMahasiswa, createDataMahasiswa, deleteDataMahasiswa, updateDataMahasiswa}

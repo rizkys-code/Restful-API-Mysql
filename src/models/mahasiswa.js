@@ -19,7 +19,12 @@ const modeldeleteDataMahasiswa = (idmahasiswa) => {
     const SQLQuery = `DELETE FROM mahasiswa WHERE id = ${idmahasiswa}` 
             return dbPoll.execute(SQLQuery)
             
-
 }
 
-module.exports = {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa}
+const updateDataMahasiswaa = (body, idmahasiswa) => {
+    const {nim, nama, no_telfon, alamat} = body
+    const SQLQuery = `UPDATE mahasiswa SET nim='${nim}', nama='${nama}', no_telfon='${no_telfon}', alamat='${alamat}' WHERE id=${idmahasiswa}`;
+            return dbPoll.execute(SQLQuery) 
+}
+
+module.exports = {getAllMahasiswaData, addMahasiswaData, modeldeleteDataMahasiswa, updateDataMahasiswaa}
