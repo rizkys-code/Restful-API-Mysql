@@ -5,14 +5,14 @@ const getAllMahasiswa = async (req,res) => {
         const [data] = await getAllMahasiswaData();
 
         res.status(200).json({
-            status: 'success bro :)',
-            massagaeL: 'Data Mahasiswa berhasil di ambil',
+            statusCode: 200,
+            massagaeL: 'Success',
             result: data,
         });
     }catch (error){
         res.send({
-            status: 'yah gagal :(',
-            massage: 'gagal ngambil data bro',
+            status: 500,
+            massage: 'Failed Get Data',
             error,
         })
     }
@@ -25,14 +25,14 @@ const createDataMahasiswa = async (req,res) =>{
 
         res.json({
             statusCode:200,
-            massage:'Berhasil Mengirim Data',
+            massage:'Success',
             result: body,
         })
         // catch itu buat nanganin masalah error setelah try berjalan jika di try ada masalah jadi tetep bisa jalan dan nunjukin pesan error nya apa 
     }catch (error){
         res.send({
             statusCode: 500,
-            massage: 'Gagal ngirim data',
+            massage: 'Failed',
             error,
         })  
     }
@@ -45,11 +45,11 @@ const deleteDataMahasiswa = async (req,res) =>{
     try{
         await modeldeleteDataMahasiswa(idmahasiswa);
         res.status(200).send({
-            message: 'Data berhasil di hapus'
+            message: 'Success Delete Data'
         })
     }catch (error){
         res.status(500).send({
-            message:'Data gagal di hapus',
+            message:'Failed Delete Data',
             error,
         })
     }
@@ -71,7 +71,7 @@ const updateDataMahasiswa = async (req,res) =>{
         })
     }catch (error){
         res.status(500).send ({
-            massage: 'Gagal update data',
+            massage: 'Failed Update Data',
             error
         })
     }
