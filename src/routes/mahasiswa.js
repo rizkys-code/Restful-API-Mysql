@@ -5,7 +5,7 @@ const {getAllMahasiswa, createDataMahasiswa, deleteDataMahasiswa, updateDataMaha
 router.get('/',getAllMahasiswa)
 router.post('/',createDataMahasiswa)
 router.delete('/:id', deleteDataMahasiswa)
-router.patch('/:id', updateDataMahasiswa)
+router.put('/:id', updateDataMahasiswa)
 
 
 module.exports=router

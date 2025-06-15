@@ -1,13 +1,17 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const cors = require('cors'); // Tambahkan ini
+const app = express();
 
-const mahasiswaRoutes = require('./routes/mahasiswa')
+const mahasiswaRoutes = require('./routes/mahasiswa');
 
+// Middleware
+app.use(cors()); // Aktifkan CORS untuk semua origin (termasuk 127.0.0.1:5500)
+app.use(express.json());
 
-app.use(express.json())
+// Routes
+app.use('/', mahasiswaRoutes);
 
-app.use('/', mahasiswaRoutes)
-
-app.listen(3000, ()=>{
-    console.log('asik servernya jalan bro')
-})
+// Start server
+app.listen(3000, () => {
+    console.log('Server jalan di http://localhost:3000');
+});

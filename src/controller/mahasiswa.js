@@ -6,7 +6,7 @@ const getAllMahasiswa = async (req,res) => {
 
         res.status(200).json({
             statusCode: 200,
-            massagaeL: 'Success',
+            massagae: 'Success',
             result: data,
         });
     }catch (error){
@@ -16,7 +16,7 @@ const getAllMahasiswa = async (req,res) => {
             error,
         })
     }
-}
+}   
 
 const createDataMahasiswa = async (req,res) =>{
     const {body} = req;
